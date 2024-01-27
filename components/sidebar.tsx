@@ -2,6 +2,10 @@
 
 import { LayoutPanelLeft,MessagesSquare,Palette,AudioWaveform,PlaySquare,Settings } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+
+import {cn} from "@/lib/utils"
 
 const routes = [
   {
@@ -43,6 +47,7 @@ const routes = [
 ];
 
 const Sidebar = () => {
+    const pathname=usePathname()
   return (
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#f6e399] text-gray">
       <div className="px-6 py-4 flex-1">
@@ -54,7 +59,9 @@ const Sidebar = () => {
             <Link
               href={route.href}
               key={route.href}
-              className="text-base group flex w-full p-5 justify-start cursor-pointer hover:text-blue"
+              className={cn("text-base group flex w-full p-5 justify-start cursor-pointer hover:text-white hover:bg-gray-500/30",
+              pathname===route.href? "text-white bg-gray-500/30": "text-gray"
+              )}
             >
               <div className="flex">
                 <route.icon className={route.color} />
