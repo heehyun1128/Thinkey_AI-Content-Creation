@@ -8,8 +8,18 @@ import { useForm } from "react-hook-form";
 import { formSchema } from "./constants";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import ChatCompletionRequestMessage from "openai";
+
+import { ChatCompletionMessageParam , ChatCompletionContentPart,ChatCompletionContentPartText} from "openai/resources/chat/completions";
+
 
 const ChatPage = () => {
+  const [msgs, setMsgs] = useState<ChatCompletionMessageParam[]>([]);
+  const router = useRouter();
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: { prompt: "" },
@@ -18,8 +28,32 @@ const ChatPage = () => {
   const isLoading = form.formState.isSubmitting;
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
-    console.log(values);
+    try {
+      const userMsg: ChatCompletionMessageParam = {
+        role: "user",
+        content: values.prompt,
+      };
+      const newMsgs = [...msgs, userMsg];
+
+      //   Call the api and get a response
+      const res = await axios.post("/api/chat", {
+        messages: newMsgs,
+      });
+      setMsgs((curr) => [...curr, userMsg, res.data]);
+      form.reset();
+    } catch (error: any) {
+    } finally {
+      router.refresh();
+    }
   };
+
+  const renderPart=(part:ChatCompletionContentPart): React.ReactNode=>{
+    if(part.type=="text"){
+        return <span>{part.text}</span>
+    }else{
+        return null
+    }
+  }
 
   return (
     // add header for chat page
@@ -54,13 +88,27 @@ const ChatPage = () => {
                   </FormItem>
                 )}
               />
-              <Button disabled={isLoading} className="col-span-12 lg:col-span-2">Generate</Button>
+              <Button
+                disabled={isLoading}
+                className="col-span-12 lg:col-span-2"
+              >
+                Generate
+              </Button>
             </form>
           </Form>
-
         </div>
         <div className="space-y-4 mt-4">
-            Message
+          <div className="flex flex-col-reverse gap-y-2">
+            {msgs.map((msg, idx) => (
+              <div key={idx}>
+                {Array.isArray(msg.content)
+                  ? msg.content.map((part, index) => (
+                      <span key={index}>{renderPart(part)}</span>
+                    ))
+                  : msg.content}
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </div>
