@@ -1,4 +1,5 @@
 Welcome to my first project built with Next.js 13, React, Tailwind, Prisma, Stripe (In Progress)
+This project is inspired by ChatGPT
 
 ## Getting Started
 
