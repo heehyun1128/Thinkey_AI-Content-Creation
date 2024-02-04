@@ -3,6 +3,7 @@ import { Heading } from "@/components/heading";
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {LoadingSpace} from '@/components/loadingSpace'
 import { MessagesSquare } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { formSchema } from "./constants";
@@ -12,6 +13,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ChatCompletionRequestMessage from "openai";
+import { Loader } from "lucide-react"
 
 import { ChatCompletionMessageParam , ChatCompletionContentPart,ChatCompletionContentPartText} from "openai/resources/chat/completions";
 
@@ -98,6 +100,12 @@ const ChatPage = () => {
           </Form>
         </div>
         <div className="space-y-4 mt-4">
+        {isLoading && <div className="p-8 flex items-center w-full justify-center bg-muted">
+                <Loader />
+            </div>}
+            {msgs.length===0 && !isLoading && (
+                <LoadingSpace label="How can I help you?" />
+            )}
           <div className="flex flex-col-reverse gap-y-2">
             {msgs.map((msg, idx) => (
               <div key={idx}>

@@ -52,7 +52,7 @@ const Sidebar = () => {
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#f6e399] text-gray">
       <div className="px-6 py-4 flex-1">
         <Link href="/dashboard" className="flex items-center pl-3 mb-14">
-          <h1 className="text-xl">Thinky</h1>
+          <h1 className="text-xl">Thinkify</h1>
         </Link>
         <div className="space-y-1">
           {routes.map((route) => (
