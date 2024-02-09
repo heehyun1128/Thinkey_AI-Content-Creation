@@ -13,7 +13,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ChatCompletionRequestMessage from "openai";
-import { Loader } from "lucide-react"
+import { Loader } from "@/components/loader"
 
 import { ChatCompletionMessageParam , ChatCompletionContentPart,ChatCompletionContentPartText} from "openai/resources/chat/completions";
 
