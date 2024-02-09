@@ -1,7 +1,7 @@
 export const Loader =()=>{
     return (
         <div>
-            Loading...
+            Thinking...
         </div>
     )
 }

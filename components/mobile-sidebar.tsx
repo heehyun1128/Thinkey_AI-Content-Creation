@@ -7,7 +7,6 @@ import Sidebar from "@/components/sidebar";
 import { useState, useEffect } from "react";
 
 
-
 const MobileSidebar = () => {
   // remove hydrating error
     const [isMounted,setIsMounted] = useState(false)
@@ -19,6 +18,7 @@ const MobileSidebar = () => {
     if(!isMounted){
         return null
     }
+    
     return (
         <Sheet>
         <SheetTrigger>
