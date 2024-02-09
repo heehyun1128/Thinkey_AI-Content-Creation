@@ -14,6 +14,7 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import ChatCompletionRequestMessage from "openai";
 import { Loader } from "@/components/loader"
+import {cn} from "@/lib/utils"
 
 import { ChatCompletionMessageParam , ChatCompletionContentPart,ChatCompletionContentPartText} from "openai/resources/chat/completions";
 
