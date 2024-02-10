@@ -17,6 +17,8 @@ import { Loader } from "@/components/loader"
 import {cn} from "@/lib/utils"
 
 import { ChatCompletionMessageParam , ChatCompletionContentPart,ChatCompletionContentPartText} from "openai/resources/chat/completions";
+import { UserAvatar } from "@/components/user-avatar";
+import { AgentAvatar } from "@/components/agent-avatar";
 
 
 const ChatPage = () => {
@@ -57,6 +59,21 @@ const ChatPage = () => {
         return null
     }
   }
+
+  const renderContent = (
+    content: string | ChatCompletionContentPart[] | null | undefined
+  ): React.ReactNode => {
+    if (typeof content === "string") {
+      return <span>{content}</span>;
+    } else if (Array.isArray(content)) {
+      // Handle array content
+      return content.map((part, partIndex) => (
+        <span key={partIndex}>{renderPart(part)}</span>
+      ));
+    } else {
+      return null; // Handle other types or null/undefined
+    }
+  };
 
   return (
     // add header for chat page
@@ -108,13 +125,12 @@ const ChatPage = () => {
                 <LoadingSpace label="How can I help you?" />
             )}
           <div className="flex flex-col-reverse gap-y-2">
-            {msgs.map((msg, idx) => (
-              <div key={idx}>
-                {Array.isArray(msg.content)
-                  ? msg.content.map((part, index) => (
-                      <span key={index}>{renderPart(part)}</span>
-                    ))
-                  : msg.content}
+            {msgs.map((msg,index) => (
+              <div key={index}
+                className={cn("p-8 w-full flex item-start gap-x-8 rounded-lg",
+                msg.role==="user"?"bg-white border border-black-10" : "bg-muted")} >
+                  {msg.role==="user"? <UserAvatar /> : <AgentAvatar />}
+                  {renderContent(msg.content)}
               </div>
             ))}
           </div>
