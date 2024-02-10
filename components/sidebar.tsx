@@ -4,6 +4,7 @@ import { LayoutPanelLeft,MessagesSquare,Palette,AudioWaveform,PlaySquare,Setting
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import Image from "next/image";
 
 import {cn} from "@/lib/utils"
 
@@ -53,7 +54,11 @@ const Sidebar = () => {
     <div className="space-y-4 py-4 flex flex-col h-full bg-[#f6e399] text-gray">
       <div className="px-6 py-4 flex-1">
         <Link href="/dashboard" className="flex items-center pl-3 mb-14">
-          <h1 className="text-xl">Thinkify</h1>
+          <h1 className="text-xl">
+            <div className="relative w-36 h-8 p-5 ml-8">
+            <Image fill src="/logo.jpg" alt="logo" />
+            </div>
+          </h1>
         </Link>
         <div className="space-y-1">
           {routes.map((route) => (
