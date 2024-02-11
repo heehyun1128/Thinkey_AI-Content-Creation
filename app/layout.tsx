@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <head><link rel="icon" href="/tlogo.jpg" /></head>
         <body className={inter.className}>{children}</body>
       </html>
     </ClerkProvider>
