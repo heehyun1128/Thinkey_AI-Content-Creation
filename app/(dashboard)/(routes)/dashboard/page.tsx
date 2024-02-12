@@ -9,8 +9,8 @@ const tools = [
   {
     label: "Chat",
     icon: MessagesSquare,
-    color: "text-gray-500",
-    bgColor: "bg-gray-500/10",
+    color: "text-orange-500",
+    bgColor: "bg-orange-500/10",
     href: "/chat",
   },
   {
