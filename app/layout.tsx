@@ -6,8 +6,8 @@ import { ClerkProvider } from "@clerk/nextjs";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "ThinkiSynchy",
-  description: "ThinkiSynchy AI",
+  title: "Thinkey",
+  description: "Thinkey AI",
 };
 
 export default function RootLayout({
@@ -18,6 +18,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
+        <head><link rel="icon" href="/tlogo.jpg" /></head>
         <body className={inter.className}>{children}</body>
       </html>
     </ClerkProvider>
