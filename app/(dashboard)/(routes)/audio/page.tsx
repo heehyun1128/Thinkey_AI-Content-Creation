@@ -12,14 +12,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import ChatCompletionRequestMessage from "openai";
 import { Loader } from "@/components/loader";
 
-import {
-  ChatCompletionMessageParam,
-  ChatCompletionContentPart,
-  ChatCompletionContentPartText,
-} from "openai/resources/chat/completions";
+
 
 const MusicPage = () => {
   const [music, setMusic] = useState<string>();
@@ -37,7 +32,9 @@ const MusicPage = () => {
       setMusic(undefined);
       //   Call the api and get a response
       const res = await axios.post("/api/audio", values);
-      setMusic(res.data.audio);
+      console.log("res",res)
+      console.log("res.data.audio",res.data.audio)
+      setMusic(res.data);
       form.reset();
     } catch (error: any) {
     } finally {
@@ -45,35 +42,15 @@ const MusicPage = () => {
     }
   };
 
-  const renderPart = (part: ChatCompletionContentPart): React.ReactNode => {
-    if (part.type == "text") {
-      return <span>{part.text}</span>;
-    } else {
-      return null;
-    }
-  };
+ 
 
-  const renderContent = (
-    content: string | ChatCompletionContentPart[] | null | undefined
-  ): React.ReactNode => {
-    if (typeof content === "string") {
-      return <span>{content}</span>;
-    } else if (Array.isArray(content)) {
-      // Handle array content
-      return content.map((part, partIndex) => (
-        <span key={partIndex}>{renderPart(part)}</span>
-      ));
-    } else {
-      return null; // Handle other types or null/undefined
-    }
-  };
-
+ 
   return (
     // add header for chat page
     <div>
       <Heading
         title="AI Music Generation"
-        description="Start your first chat"
+        description="Start your first Audio/Music"
         icon={Music}
         iconColor="text-sky-500"
         bgColor="bg-sky-500/10"
@@ -119,7 +96,13 @@ const MusicPage = () => {
           {!music && !isLoading && (
             <LoadingSpace label="How can I help you?" />
           )}
-          <div></div>
+          {
+            music && (
+              <audio controls className="w-full mt-8">
+                <source src={music}/>
+              </audio>
+            )
+          }
         </div>
       </div>
     </div>
