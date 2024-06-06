@@ -1,0 +1,16 @@
+*{
+    margin:0;
+    padding: 0;
+}
+
+#slogan{
+    width: 40%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#slogan h2{
+    font-size: 20px;
+}

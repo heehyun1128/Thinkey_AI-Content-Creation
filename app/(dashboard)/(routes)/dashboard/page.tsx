@@ -4,7 +4,8 @@ import { Card } from "@/components/ui/card";
 import { Palette,AudioWaveform,PlaySquare, MessagesSquare, PlusIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
-
+import { useEffect, useRef } from "react";
+import Typed from 'typed.js';
 const tools = [
   {
     label: "Chat",
@@ -37,6 +38,20 @@ const tools = [
 ];
 
 export default function DashboardPage() {
+  const el = useRef(null);
+  
+  useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ['<i> How can I help you today?</i>'],
+      typeSpeed: 50,
+      // loop: true
+      showCursor:false
+    });
+  
+    return () => {
+      typed.destroy();
+    };
+  }, []);
 
   const router = useRouter()
   return (
@@ -44,11 +59,11 @@ export default function DashboardPage() {
     <div>
       <div>
         <div className="mb-8 space-y-4"></div>
-        <h2 className="text-2xl md:text-4xl font-bold text-center">
-          Start A Chat With AI
-        </h2>
-        <p className="font-light text-base text-center text-gray-500">
-          How can I help you today?
+        <h4 className="text-2xl md:text-4xl font-bold text-center">
+          Start A Chat With THINKEY
+        </h4>
+        <p ref={el} className="font-light text-base text-center text-gray-500">
+      
         </p>
       </div>
       <div>
