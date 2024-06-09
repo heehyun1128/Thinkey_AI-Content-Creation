@@ -16,7 +16,7 @@ if (!cached) {
   };
 }
 
-export const connectionToDatabase = async () => {
+export const connectToDatabase = async () => {
   if (cached.conn) return cached.conn;
   if (!MONGODB_URL) throw new Error("MONGODB_URL is not valid or not defined");
   cached.promise =
