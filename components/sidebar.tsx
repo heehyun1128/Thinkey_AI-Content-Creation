@@ -39,12 +39,12 @@ const routes = [
     href: "/video",
     color: "text-purple-500",
   },
-  {
-    label: "Settings",
-    icon: Settings,
-    href: "/settings",
-    color: "text-gray-500",
-  },
+  // {
+  //   label: "Settings",
+  //   icon: Settings,
+  //   href: "/settings",
+  //   color: "text-gray-500",
+  // },
 ];
 
 
