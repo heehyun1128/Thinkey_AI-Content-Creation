@@ -1,17 +1,35 @@
+"use client";
 import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
+import { useState } from "react";
+import {
+
+  Menu,
+  MoveLeft
+} from "lucide-react";
+import  "../../app/layout.css"
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+  const [showSidebar, setShowSidebar] = useState(false);
   return (
     <div className="h-full relative">
+      <button
+        className={`fixed left-6 top-10 z-50 ${
+          showSidebar ? "text-4xl text-black" : "text-sm text-black"
+        }`}
+        onClick={() => setShowSidebar(!showSidebar)}
+      >
+        {showSidebar ? <MoveLeft />: <Menu />}
+      </button>
       {/*style side bar using tailwind css */}
-      <div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 z-[80]">
-        <Sidebar />
-      </div>
-      <main className="md:max-w-[calc(100%-72px)]">
-      <Navbar/>
+      {showSidebar && (
+        <div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 ">
+          <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+        </div>
+      )}
+      <main className={showSidebar?`ml-60`:`md:max-w-[calc(100%-72px)]`}>
+        <Navbar />
         {children}
-        
       </main>
     </div>
   );

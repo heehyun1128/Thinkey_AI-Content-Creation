@@ -79,8 +79,8 @@ const ChatPage = () => {
     // add header for chat page
     <div>
       <Heading
-        title="Chat"
-        description="Start your first chat"
+        title="CHAT"
+        description="Start chatting with your AI agent"
         icon={MessagesSquare}
         iconColor="text-orange-500"
         bgColor="bg-orange-500/10"
@@ -91,7 +91,7 @@ const ChatPage = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="border rounded-lg w-full p-5 px-4 md:px-6 focus-within:shadow-sm grid grid-cols-10 gap-2"
+              className="border-slate-500 border rounded-lg w-full p-5 px-4 md:px-6 focus-within:shadow-sm grid grid-cols-10 gap-2"
             >
               <FormField
                 name="prompt"
@@ -110,7 +110,7 @@ const ChatPage = () => {
               />
               <Button
                 disabled={isLoading}
-                className="col-span-12 lg:col-span-2"
+                className="col-span-12 lg:col-span-2 bg-slate-500"
               >
                 Generate
               </Button>

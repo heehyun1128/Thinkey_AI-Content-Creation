@@ -13,7 +13,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { FC, useState } from "react";
 
 const routes = [
   {
@@ -47,21 +47,18 @@ const routes = [
     color: "text-purple-500",
   },
 ];
+type SidebarProps = {
+  showSidebar: boolean;
+  setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
+};
 
-const Sidebar = () => {
+const Sidebar:FC<SidebarProps> = ({ showSidebar, setShowSidebar })  => {
   const pathname = usePathname();
-  const [showSidebar, setShowSidebar] = useState(false);
+ 
 
   return (
     <div className="flex flex-col h-full">
-      <button
-        className={`fixed left-6 top-10 z-50 ${
-          showSidebar ? "text-4xl text-black" : "text-sm text-black"
-        }`}
-        onClick={() => setShowSidebar(!showSidebar)}
-      >
-        {showSidebar ? <MoveLeft />: <Menu />}
-      </button>
+      
       <div
         className={`fixed inset-y-0 left-0 transform bg-gray-600 transition-transform duration-300 ease-in-out ${
           showSidebar ? "translate-x-0" : "-translate-x-full"

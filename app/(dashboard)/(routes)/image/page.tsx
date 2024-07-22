@@ -15,6 +15,7 @@ import { useState } from "react";
 import { Loader } from "@/components/loader";
 import { cn } from "@/lib/utils";
 
+
 import {
   ChatCompletionMessageParam,
   ChatCompletionContentPart,
@@ -87,7 +88,8 @@ const ImagePage = () => {
     // add header for chat page
     <div>
       <Heading
-        title="AI Image Generation"
+     
+        title="AI IMAGE GENERATION"
         description="Get a Thinkey Image."
         icon={ImageIcon}
         iconColor="text-green-800"
@@ -99,17 +101,17 @@ const ImagePage = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="border rounded-lg w-full p-5 px-4 md:px-6 focus-within:shadow-sm grid grid-cols-10 gap-2"
+              className="border-slate-500 border rounded-lg w-full p-5 px-4 md:px-6 focus-within:shadow-sm "
             >
               <FormField
                 name="prompt"
                 render={({ field }) => (
-                  <FormItem className="col-span-12 lg:col-span-6">
+                  <FormItem className="col-span-12 lg:col-span-6 mb-1">
                     <FormControl className="m-0 p-0">
                       <Input
                         disabled={isLoading}
-                        placeholder="Start a image generation here..."
-                        className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+                        placeholder="Start Image Generation Here..."
+                        className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent p-2"
                         {...field}
                       />
                     </FormControl>
@@ -120,7 +122,7 @@ const ImagePage = () => {
                 control={form.control}
                 name="amount"
                 render={({ field }) => (
-                  <FormItem className="col-span-12 lg:col-span-2">
+                  <FormItem className="col-span-12 lg:col-span-2 mb-1">
                     <Select
                       disabled={isLoading}
                       value={field.value}
@@ -147,7 +149,7 @@ const ImagePage = () => {
                 control={form.control}
                 name="resolution"
                 render={({ field }) => (
-                  <FormItem className="col-span-12 lg:col-span-2">
+                  <FormItem className="col-span-12 lg:col-span-2 mb-1">
                     <Select
                       disabled={isLoading}
                       value={field.value}
@@ -172,7 +174,7 @@ const ImagePage = () => {
               />
               <Button
                 disabled={isLoading}
-                className="col-span-12 lg:col-span-2"
+                className="col-span-12 lg:col-span-2 bg-slate-500"
               >
                 Generate
               </Button>
@@ -185,9 +187,10 @@ const ImagePage = () => {
               <Loader />
             </div>
           )}
-          {images.length === 0 && !isLoading && (
-            <LoadingSpace label="Start AI Image Generation Here..." />
-          )}
+        
+          {/* {images.length === 0 && !isLoading && (
+            <LoadingSpace label="How can I help you?" />
+          )} */}
           <div>
             {images.map((src) => (
               <Card key={src} className="rounded-lg overflow-hidden">
