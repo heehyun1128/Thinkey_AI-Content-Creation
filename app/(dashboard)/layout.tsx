@@ -1,5 +1,5 @@
 "use client";
-// import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
 import { useState } from "react";
 import {
@@ -24,11 +24,11 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
       {/*style side bar using tailwind css */}
       {showSidebar && (
         <div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 ">
-          <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+          <Sidebar showSidebar={showSidebar}  />
         </div>
       )}
       <main className={showSidebar?`ml-60`:`md:max-w-[calc(100%-72px)]`}>
-        {/* <Navbar /> */}
+        <Navbar showSidebar={showSidebar}/>
         {children}
       </main>
     </div>

@@ -49,10 +49,9 @@ const routes = [
 ];
 type SidebarProps = {
   showSidebar: boolean;
-  setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Sidebar:FC<SidebarProps> = ({ showSidebar, setShowSidebar })  => {
+const Sidebar:FC<SidebarProps> = ({ showSidebar })  => {
   const pathname = usePathname();
  
 
