@@ -1,5 +1,5 @@
 "use client";
-import Navbar from "@/components/navbar";
+// import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
 import { useState } from "react";
 import {
@@ -28,7 +28,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         </div>
       )}
       <main className={showSidebar?`ml-60`:`md:max-w-[calc(100%-72px)]`}>
-        <Navbar />
+        {/* <Navbar /> */}
         {children}
       </main>
     </div>
