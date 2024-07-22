@@ -23,7 +23,7 @@ export const Heading = ({
         <Icon className={cn("w-10 h-10", iconColor)} />
       </div>
       <div>
-        <p className="text-2xl">{title}</p>
+        <p className="text-2xl title-txt">{title}</p>
         <p className="text-sm text-gray-400">{description}</p>
       </div>
     </div>

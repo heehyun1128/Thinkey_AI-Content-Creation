@@ -49,8 +49,8 @@ const MusicPage = () => {
     // add header for chat page
     <div>
       <Heading
-        title="AI Music Generation"
-        description="Start your first Audio/Music"
+        title="AI AUDIO GENERATION"
+        description="Generate an Audio/Music file here"
         icon={Music}
         iconColor="text-sky-500"
         bgColor="bg-sky-500/10"
@@ -61,7 +61,7 @@ const MusicPage = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="border rounded-lg w-full p-5 px-4 md:px-6 focus-within:shadow-sm grid grid-cols-10 gap-2"
+              className="border-slate-500 border rounded-lg w-full p-5 px-4 md:px-6 focus-within:shadow-sm grid grid-cols-10 gap-2"
             >
               <FormField
                 name="prompt"
@@ -69,6 +69,7 @@ const MusicPage = () => {
                   <FormItem className="col-span-12 lg:col-span-8">
                     <FormControl className="m-0 p-0">
                       <Input
+                      // autoFocus
                         disabled={isLoading}
                         placeholder="What do you want to listen to?"
                         className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
@@ -80,7 +81,7 @@ const MusicPage = () => {
               />
               <Button
                 disabled={isLoading}
-                className="col-span-12 lg:col-span-2"
+                className="col-span-12 lg:col-span-2 bg-slate-500"
               >
                 Generate
               </Button>

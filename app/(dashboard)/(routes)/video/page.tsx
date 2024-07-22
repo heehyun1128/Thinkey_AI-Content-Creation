@@ -49,7 +49,7 @@ const Videopage = () => {
     // add header for chat page
     <div>
       <Heading
-        title="AI video Generation"
+        title="AI VIDEO GENERATION"
         description="Start your first video"
         icon={VideoIcon}
         iconColor="text-purple-500"
@@ -61,7 +61,7 @@ const Videopage = () => {
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(onSubmit)}
-              className="border rounded-lg w-full p-5 px-4 md:px-6 focus-within:shadow-sm grid grid-cols-10 gap-2"
+              className="border-slate-500 border rounded-lg w-full p-5 px-4 md:px-6 focus-within:shadow-sm grid grid-cols-10 gap-2"
             >
               <FormField
                 name="prompt"
@@ -80,7 +80,7 @@ const Videopage = () => {
               />
               <Button
                 disabled={isLoading}
-                className="col-span-12 lg:col-span-2"
+                className="col-span-12 lg:col-span-2 bg-slate-500"
               >
                 Generate
               </Button>
