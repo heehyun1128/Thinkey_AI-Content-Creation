@@ -1,16 +1,13 @@
 "use client";
-// import Navbar from "@/components/navbar";
+import Navbar from "@/components/navbar";
 import Sidebar from "@/components/sidebar";
 import { useState } from "react";
-import {
-
-  Menu,
-  MoveLeft
-} from "lucide-react";
-import  "../../app/layout.css"
+import { Menu, MoveLeft } from "lucide-react";
+import "../../app/layout.css";
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
   const [showSidebar, setShowSidebar] = useState(false);
+
   return (
     <div className="h-full relative">
       <button
@@ -19,16 +16,21 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
         }`}
         onClick={() => setShowSidebar(!showSidebar)}
       >
-        {showSidebar ? <MoveLeft />: <Menu />}
+        {showSidebar ? <MoveLeft /> : <Menu />}
       </button>
       {/*style side bar using tailwind css */}
       {showSidebar && (
-        <div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 ">
-          <Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+        <div className="fixed inset-0 z-40 bg-black bg-opacity-50 md:hidden" onClick={() => setShowSidebar(false)}>
+          <div className="absolute inset-y-0 left-0 w-72 bg-white shadow-lg">
+            <Sidebar showSidebar={showSidebar} />
+          </div>
         </div>
       )}
-      <main className={showSidebar?`ml-60`:`md:max-w-[calc(100%-72px)]`}>
-        {/* <Navbar /> */}
+      <div className="hidden md:flex md:w-72 md:flex-col md:fixed md:inset-y-0">
+        <Sidebar showSidebar={showSidebar} />
+      </div>
+      <main className={showSidebar ? `ml-0 md:ml-72` : `ml-0`}>
+        <Navbar showSidebar={showSidebar} />
         {children}
       </main>
     </div>

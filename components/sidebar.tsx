@@ -49,18 +49,17 @@ const routes = [
 ];
 type SidebarProps = {
   showSidebar: boolean;
-  setShowSidebar: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
-const Sidebar:FC<SidebarProps> = ({ showSidebar, setShowSidebar })  => {
+const Sidebar:FC<SidebarProps> = ({ showSidebar })  => {
   const pathname = usePathname();
  
 
   return (
-    <div className="flex flex-col h-full">
+    <div className="flex flex-col h-full ">
       
       <div
-        className={`fixed inset-y-0 left-0 transform bg-gray-600 transition-transform duration-300 ease-in-out ${
+        className={`w-full md:w-72 fixed inset-y-0 left-0 transform bg-gray-600 transition-transform duration-300 ease-in-out ${
           showSidebar ? "translate-x-0" : "-translate-x-full"
         }`}
       >
