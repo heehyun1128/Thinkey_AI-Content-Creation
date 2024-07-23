@@ -128,7 +128,7 @@ const ChatPage = () => {
             {msgs.map((msg,index) => (
               <div key={index}
                 className={cn("p-8 w-full flex item-start gap-x-8 rounded-lg",
-                msg.role==="user"?"bg-white border border-black-10" : "bg-muted")} >
+                msg.role==="user"?"bg-white border border-black-10" : "bg-amber-100")} >
                   {msg.role==="user"? <UserAvatar /> : <AgentAvatar />}
                   {renderContent(msg.content)}
               </div>
