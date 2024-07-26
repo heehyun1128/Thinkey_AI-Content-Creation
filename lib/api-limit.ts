@@ -55,3 +55,16 @@ export const checkLimit = async () => {
     }
   }
 };
+
+export const getAPILimitCount=async()=>{
+    const { userId } = auth();
+
+    if (!userId) {
+      return 0
+    }
+    const userApiLimit = await UserApiLimit.findOne({ userId });
+    
+    if(!userApiLimit){return 0}
+
+    return userApiLimit.count
+}

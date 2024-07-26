@@ -51,6 +51,6 @@ userApiLimitSchema.pre('findOneAndUpdate', function (next) {
 });
 
 // Create the model
-const UserApiLimit = mongoose.models.UserApiLimit || mongoose.model<IUserApiLimit>('UserApiLimit', userApiLimitSchema);
+const UserApiLimit = mongoose.models?.UserApiLimit || mongoose.model<IUserApiLimit>('UserApiLimit', userApiLimitSchema);
 
 export default UserApiLimit;

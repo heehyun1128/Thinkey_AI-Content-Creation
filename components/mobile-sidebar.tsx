@@ -8,8 +8,9 @@ import { useState, useEffect, FC } from "react";
 
 type SidebarProps = {
     showSidebar: boolean;
+    apiLimit:number | null
   };
-const MobileSidebar:FC<SidebarProps> = ({ showSidebar }) => {
+const MobileSidebar:FC<SidebarProps> = ({ apiLimit,showSidebar }) => {
   // remove hydrating error
     const [isMounted,setIsMounted] = useState(false)
 
@@ -30,7 +31,7 @@ const MobileSidebar:FC<SidebarProps> = ({ showSidebar }) => {
             </Button>
         </SheetTrigger>
         <SheetContent side="left" className="p-0">
-            <Sidebar  showSidebar={showSidebar}/>
+            <Sidebar apiLimit={apiLimit} showSidebar={showSidebar}/>
         </SheetContent>
         </Sheet>
     );

@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { FC, useState } from "react";
+import FreeTrialCounter from "./freetrial-counter";
 
 const routes = [
   {
@@ -49,9 +50,10 @@ const routes = [
 ];
 type SidebarProps = {
   showSidebar: boolean;
+  apiLimit:number | null
 };
 
-const Sidebar:FC<SidebarProps> = ({ showSidebar })  => {
+const Sidebar:FC<SidebarProps> = ({ apiLimit, showSidebar })  => {
   const pathname = usePathname();
  
 
@@ -90,8 +92,11 @@ const Sidebar:FC<SidebarProps> = ({ showSidebar })  => {
               ))}
             </div>
           </div>
+            <FreeTrialCounter apiLimit={apiLimit}/> 
+          
         </div>
       </div>
+     
     </div>
   );
 };

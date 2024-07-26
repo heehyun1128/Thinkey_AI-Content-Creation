@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { auth } from "@clerk/nextjs";
-
+import { increaseAPILimit, checkLimit } from "@/lib/api-limit";
 import Replicate from "replicate"
 
 const replicate = new Replicate({
@@ -20,7 +20,11 @@ export async function POST(req: Request) {
     if (!prompt) {
       return new NextResponse("Prompt is required.", { status: 400 });
     }
+    const isFreeTrial = await checkLimit();
 
+    if (!isFreeTrial) {
+      return new NextResponse("You've reached the free trial usage limit.", { status: 403 });
+    }
     const response = await replicate.run(
       "meta/musicgen:b05b1dff1d8c6dc63d14b0cdb42135378dcb87f6373b0d3d341ede46e59e2b38",
       {
@@ -40,6 +44,7 @@ export async function POST(req: Request) {
         }
       }
     );
+    await increaseAPILimit();
     return NextResponse.json(response)
   } catch (e) {
     console.log("error:", e);
